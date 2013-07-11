@@ -43,6 +43,8 @@ Jekyll does not come with any content nor does it have any templates or design e
 This is a common source of confusion when getting started.
 Jekyll does not come with anything you actually use or see on your website - you have to make it.
 
+<!--break-->
+
 ### Why Should I Care?
 
 Jekyll is very minimalistic and very efficient.

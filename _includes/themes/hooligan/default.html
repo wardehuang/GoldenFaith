@@ -24,7 +24,6 @@
     <link href="{{ ASSET_PATH }}/css/darkstrap.css" rel="stylesheet" type="text/css" media="all">    
     <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
 
-    
     <!-- fav and touch icons -->
   <!-- Update these with your own images
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -56,6 +55,11 @@
               {% include JB/pages_list %}
             </ul>
             <ul class="nav pull-right social visible-desktop">
+              <li>
+                <form action="/search" method="get" class="form-search" style="margin:0!important">
+                  <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off" class="input-medium search-query">
+                </form>
+              </li>
               <li class="divider-vertical"></li>
               {% if site.author.github %}
                 <li>
@@ -112,7 +116,26 @@
       </div>
     </div>
 
+{% raw %}
+    <script id="search-results-template" type="text/mustache">
+      {{#entries}}
+        <article>
+          <h3>
+            {{#date}}
+                <small><time datetime="{{pubdate}}" pubdate>{{displaydate}}</time></small>
+            {{/date}}
+            <a href="{{url}}">{{title}}</a></h3>
+        </article>
+      {{/entries}}
+    </script>
+{% endraw %}
+
     <div class="container">
+      <section id="search-results" style="display: none;" class="page-header search-results">
+        <h2>Search results</h2>
+        <div class="entries">
+        </div>
+      </section>
       <div class="content">
         {{ content }}
       </div>
@@ -128,6 +151,23 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="{{ ASSET_PATH }}/js/jquery.min.js"><\/script>')</script>
     <script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="{{ ASSET_PATH }}/js/lunr.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ ASSET_PATH }}/js/mustache.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ ASSET_PATH }}/js/date.format.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ ASSET_PATH }}/js/URI.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ ASSET_PATH }}/js/jquery.lunr.search.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+  $(function() {
+    $('#search-query').lunrSearch({
+      indexUrl: '/search.json',             // URL of the `search.json` index data for your site
+      results:  '#search-results',          // jQuery selector for the search results container
+      entries:  '.entries',                 // jQuery selector for the element to contain the results list, must be a child of the results element above.
+      template: '#search-results-template'  // jQuery selector for the Mustache.js template
+    });
+  });
+</script>
 
     {% include JB/analytics %}
   </body>
