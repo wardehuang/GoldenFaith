@@ -1,79 +1,64 @@
-<!DOCTYPE html>
-<html>
+---
+layout: default
+title: Edward's GoldenFaith
+---
+{% include JB/setup %}
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Goldenfaith : Edward's Golden Faith" />
+<div id="content">
+    <article id="post_list">
+      {% for post in paginator.posts %}
+        <section class="post">
+          <h2><a href="{{ BASE_PATH }}{{ post.url }}" class="title">{{ post.title }}</a></h2>
+          <small class="meta">{{ post.date | date: "%m - %d - %Y" }}</small>
+        <div class="content">
+        {{ post.content  | | split:'<!--break-->' | first}}
+        
+        
+        </div>
+        <!-- 标签 -->
+        <ul class="tag_box inline">
+      		{% assign tags_list = post.tags %}
+      		{% include JB/tags_list %}
+      	</ul>
+        <br/>
+      	<!-- readmore按钮 -->
+        <p class="preadmore"><a href="{{ BASE_PATH }}{{ post.url }}" alt="Read More" class="readmore"><span>&#10149;</span>阅读全文</a></p>
+         
+        </section>
+      {% endfor %}
+    </article>
+</div>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+<!--分页器-->
+<div id="pagination">
+  <div class="pagenavi">
+  <span class="page_number">第{{paginator.page}}页/共{{paginator.total_pages}}页</span>
+  <!--暂时先把第一页给注释掉-->
+  <!--a href="/">第一页</a-->
+  {% if paginator.previous_page %}
+    {% if paginator.previous_page == 1 %}
+      <a href="/" class="current">前一页</a>
+    {% else %}
+      <a href="/page{{paginator.previous_page}}">前一页</a>
+    {% endif %}
+    {% else %}
+      <span>前一页</span>
+  {% endif %}
 
-    <title>Goldenfaith</title>
-  </head>
+  {% for count in (1..paginator.total_pages) limit:8 %}
+    {% if count == paginator.page %}
+      <span class="current-page">{{count}}</span>
+    {% else %}
+      <a href="/page{{count}}">{{count}}</a>
+    {% endif %}
+  {% endfor %}
 
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/wardehuang/GoldenFaith">View on GitHub</a>
-
-          <h1 id="project_title">Goldenfaith</h1>
-          <h2 id="project_tagline">Edward's Golden Faith</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/wardehuang/GoldenFaith/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/wardehuang/GoldenFaith/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Goldenfaith maintained by <a href="https://github.com/wardehuang">wardehuang</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
-</html>
+  {% if paginator.next_page %}
+    <a href="/page{{paginator.next_page}}">后一页</a>
+  {% else %}
+    <span>后一页</span>
+  {% endif %}
+    <!--暂时先把最后一页给注释掉-->
+    <!--a href="/page{{paginator.total_pages}}">最后一页</a-->
+  </div>
+</div>
