@@ -441,3 +441,7 @@ input.search-query {
 .preadmore a{
     float:right;
 }
+
+.pull-righti{
+    float:right!important;
+}

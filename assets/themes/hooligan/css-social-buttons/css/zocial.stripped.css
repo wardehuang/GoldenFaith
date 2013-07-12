@@ -73,7 +73,7 @@ a.zocial {
 /* Buttons can be displayed as standalone icons by adding a class of "icon" */
 
 .zocial.icon {
-
+	padding-top: 6px!important;
 }
 .zocial.icon:before {
 	box-shadow: none;

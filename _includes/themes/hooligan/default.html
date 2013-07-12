@@ -49,12 +49,43 @@
 
 
           <div class="nav-collapse">
-            <ul class="nav">
+            <ul class="nav" id="navbar">
               {% assign pages_list = site.pages %}
               {% assign group = 'navigation' %}
               {% include JB/pages_list %}
+
+              <li class="divider-vertical"></li>
+              <li>
+                <form action="/search" method="get" class="form-search" style="margin:0!important">
+                  <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off" class="input-medium search-query">
+                </form>
+              </li>
+
+              <li class="divider-vertical"></li>
+              {% if site.author.github %}
+                <li>
+                  <a href="https://github.com/{{ site.author.github }}" class="zocial github icon" target="_blank">
+                    <span class="hidden-desktop">Github</span>
+                  </a>
+                </li>
+              {% endif %}
+              {% if site.author.sina %}
+                <li>
+                  <a href="http://www.weibo.com/{{ site.author.sina }}" class="zocial weibo icon" target="_blank">
+                    <span class="hidden-desktop">Weibo</span>
+                  </a>
+                </li>
+              {% endif %}
+              {% if site.author.feedburner %}
+                <li>
+                  <a href="http://feeds.feedburner.com/{{ site.author.feedburner }}" class="zocial rss icon" target="_blank">
+                    <span class="hidden-desktop">FeedBurner</span>
+                  </a>
+                </li>
+              {% endif %}
             </ul>
-            <ul class="nav pull-right social visible-desktop">
+            <!--
+            <ul class="nav pull-right social">
               <li>
                 <form action="/search" method="get" class="form-search" style="margin:0!important">
                   <input type="text" id="search-query" name="q" placeholder="Search" autocomplete="off" class="input-medium search-query">
@@ -111,6 +142,7 @@
                 </li>
               {% endif %}
             </ul>
+          -->
           </div>
         </div>
       </div>
@@ -160,12 +192,29 @@
 
 <script type="text/javascript">
   $(function() {
+    if($('[data-toggle="collapse"]').is(':visible')){
+      $('#navbar').removeClass('pull-righti');
+    }
+    else{
+      $('#navbar').addClass('pull-righti');
+    }
+
+
     $('#search-query').lunrSearch({
       indexUrl: '/search.json',             // URL of the `search.json` index data for your site
       results:  '#search-results',          // jQuery selector for the search results container
       entries:  '.entries',                 // jQuery selector for the element to contain the results list, must be a child of the results element above.
       template: '#search-results-template'  // jQuery selector for the Mustache.js template
     });
+  });
+
+  $(window).resize(function() {
+    if($('[data-toggle="collapse"]').is(':visible') && $('#navbar').hasClass('pull-righti')){
+      $('#navbar').removeClass('pull-righti');
+    }
+    else if(!($('[data-toggle="collapse"]').is(':visible')) && !($('#navbar').hasClass('pull-righti'))){
+      $('#navbar').addClass('pull-righti');
+    }
   });
 </script>
 
