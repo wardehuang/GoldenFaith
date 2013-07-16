@@ -1,0 +1,27 @@
+---
+layout: default
+title: "Search"
+description: "Search"
+keywords: "Search"
+---
+{% include JB/setup %}
+
+<style type="text/css">
+    body{
+        text-shadow:none;
+    }
+</style>
+
+<script>
+  (function() {
+    var cx = '008161660259960878118:3mcecd9fokc';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
