@@ -2,11 +2,11 @@
 layout: post
 title: "Photon札记：可靠Udp、ChannelId、Queue Warning"
 category: Programming
-tags: [Photon, Photon ChannelId, Photon Queue]
+tags: [Photon]
 ---
 {% include JB/setup %}
 
-使用[Photon Server](https://www.exitgames.com/)也有一段时间了。当时了解到Photon的时候简直就觉得是为我这类人量身定做的~
+使用<a href="https://www.exitgames.com/" target="_blank">Photon Server</a>也有一段时间了。当时了解到Photon的时候简直就觉得是为我这类人量身定做的~
 
 - Unity3D, C# 用户。
 - 业余开发者(晚上，周末)，没很多的时间从零开始写一个服务器。
@@ -20,7 +20,7 @@ tags: [Photon, Photon ChannelId, Photon Queue]
 <br />
 ## Tcp 还是 Udp?
 
-Tcp 和 Udp是我最先遇到的一个选择，Photon都支持，这个选择并不难，并没有太多犹豫地选择了Udp, 原因是我要做的是注重实时性的网络游戏。正如[Udp vs Tcp](http://gafferongames.com/networking-for-game-programmers/udp-vs-tcp/)一文所说，网游可以容忍某些普通包的丢弃，但等待包的重发带来的延迟却会使玩家抓狂~ Photon Team的Kaiserludi也说：
+Tcp 和 Udp是我最先遇到的一个选择，Photon都支持，这个选择并不难，并没有太多犹豫地选择了Udp, 原因是我要做的是注重实时性的网络游戏。正如<a href="http://gafferongames.com/networking-for-game-programmers/udp-vs-tcp/" target="_blank">Udp vs Tcp</a>一文所说，网游可以容忍某些普通包的丢弃，但等待包的重发带来的延迟却会使玩家抓狂~ Photon Team的Kaiserludi也说：
 
 	TCP is only implemented as a fallback solution in Photon in case, that one can't use UDP for some reason. 
 
@@ -97,7 +97,7 @@ Channel的概念令得Photon的Udp更为灵活，考虑以下场景：
 
 所有以上的warning出现的阀值都是`100`。
 
-在Photon的Unity3D SDK中，提供了一个脚本[PhotonStatsGui](http://doc.exitgames.com/photon-cloud/PhotonStatsGui/)可以让用户很好的观察当前队列的状态。
+在Photon的Unity3D SDK中，提供了一个脚本<a href="http://doc.exitgames.com/photon-cloud/PhotonStatsGui/" target="_blank">PhotonStatsGui</a>可以让用户很好的观察当前队列的状态。
 
 <img src="/assets/custom/images/posts/PhotonStatsGui.jpg" />
 
@@ -127,4 +127,6 @@ Channel的概念令得Photon的Udp更为灵活，考虑以下场景：
 
 1. 可以使用Udp的时候坚决使用Udp，除非没得选(Flash, Websocket)
 2. 合理利用Channel来安排命令的优先级。
-3. 注意生产和消费的平衡，客户端每发起一次请求都有可能会对其他客户端产生一次事件，当玩家越来越多，客户端接收到的事件也会剧增，最坏的情况是: [One side produces so much data that it breaks the receiving end.](http://doc.exitgames.com/photon-server/PerformanceTips/)
+3. 注意生产和消费的平衡，客户端每发起一次请求都有可能会对其他客户端产生一次事件，当玩家越来越多，客户端接收到的事件也会剧增，最坏的情况是: <a href="http://doc.exitgames.com/photon-server/PerformanceTips/" target="_blank">One side produces so much data that it breaks the receiving end.</a>
+
+<br />
