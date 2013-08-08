@@ -25,7 +25,7 @@ NGUI是接触的最早的一个unity插件，在我刚开始学unity的时候，
 
 <img src="/assets/custom/images/posts/NGUIChatRoomScreenshot.jpg" />
 
-首先是`表情`。 NGUI2.05开始就支持表情，<a href="http://www.youtube.com/watch?v=JbqfK3mU140">猛击</a>。 看完视频后，作为一个敲惯代码的农民表示比较难以接受，基本都是手动的活。 我理想中的实现是，只要表情sprite的名字是有规律的，写代码循环生成就可以。 某个更新后，这个过程变得方便了点，直接在Inspector中就可以添加表情，但还没方便到可以满足我这种懒人。
+首先是`表情`。 NGUI2.05开始就支持表情，<a href="http://www.youtube.com/watch?v=JbqfK3mU140" target="_blank">猛击</a>。 看完视频后，作为一个敲惯代码的农民表示比较难以接受，基本都是手动的活。 我理想中的实现是，只要表情sprite的名字是有规律的，写代码循环生成就可以。 某个更新后，这个过程变得方便了点，直接在Inspector中就可以添加表情，但还没方便到可以满足我这种懒人。
 
 道具展示。 就是把道具贴到聊天框，其他玩家可以查看。
 
@@ -35,9 +35,9 @@ NGUI是接触的最早的一个unity插件，在我刚开始学unity的时候，
 
 多频道。 就是相应的消息只发到相应的频道只有相应的玩家能看到~
 
-很早前就已经实现了，现在决定把它放上来，因此作了点改动，现在它是个聊天室，支持20个人在线， 服务器搭建在<a href="http://cloud.exitgames.com/" >Photon Cloud</a>上。 动态字体支持后，马上就改了（恨透了bitmap字体，特别是中文）
+很早前就已经实现了，现在决定把它放上来，因此作了点改动，现在它是个聊天室，支持20个人在线， 服务器搭建在<a href="http://cloud.exitgames.com/" target="_blank">Photon Cloud</a>上。 动态字体支持后，马上就改了（恨透了bitmap字体，特别是中文）
 
-WebPlayer链接：<a href="http://edwardwong.github.io/Asset/ChatRoom.html">NGUI Chat Room</a>
+WebPlayer链接：<a href="http://edwardwong.github.io/Asset/ChatRoom.html" target="_blank">NGUI Chat Room</a>
 
 注意： 
 等待"登录"按钮出现后，随意输入你的大名就可登录了~ 如果"登录"按钮没出现，请F5，有时服务器会抽风- =!!
