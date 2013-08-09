@@ -34,7 +34,7 @@ Unity可以编译出网页版，个人觉得这是非常方便的，无论你做
 然后打开Player Setting就可以看到，新增的模板~  
 <img src="/assets/custom/images/posts/AutofitWebPlayerTemplate02.jpg" />
 
-要注意的是： `Default Screen Width` 和 `Default Screen Height` 并不代表它们字面上的意思，而是设置一个最小分辨率。 设置值为1024x768意味着，当用户的分辨率小于1024x768，WebPlayer的大小会保持1024x768，且会出现Scrollbar。 如下图所示：  
+要注意的是： 在这个模板中，`Default Screen Width` 和 `Default Screen Height` 并不代表它们字面上的意思，而是设置一个最小分辨率。 设置值为1024x768意味着，当用户的分辨率小于1024x768，WebPlayer的大小会保持1024x768，且会出现Scrollbar。 如下图所示：  
 <img src="/assets/custom/images/posts/AutofitWebPlayerTemplate03.jpg" />
 
 当然，如果你的代码写的非常优秀，根本没有最低分辨率的限制，可以将`Default Screen Width` 和 `Default Screen Height` 设置为0x0，代表着无最小分辨率。
