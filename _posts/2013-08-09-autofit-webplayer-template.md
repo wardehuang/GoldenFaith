@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Autofit WebPlayer Template"
+title: "自适应的WebPlayer模板"
 description: ""
 category: Programming
 tags: [Unity3d]
