@@ -6,7 +6,7 @@ tags: [Unity3d]
 ---
 {% include JB/setup %}
 
-这个是第一个Unity练手小项目，跟着<a href="http://www.3dbuzz.com/training/view/unity-standard/simple-2d-shooter" target="_blank">视频教程</a>一步步完成的。虽然很简单，但确实把我带入门了，并且也是有值得记录下来的知识点，将会在下篇笔记上详细记录。 
+这个是第一个Unity练手小项目，跟着<a href="http://www.3dbuzz.com/training/view/unity-standard/simple-2d-shooter" target="_blank">视频教程</a>一步步完成的。虽然很简单，但确实把我带入门了，并且也是有值得记录下来的知识点。 
 说回这个游戏吧，2D的打飞机游戏(邪恶了...) 惯例来几张高清无码图~
 <!--break-->
 
