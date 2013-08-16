@@ -90,7 +90,7 @@ Coroutine可以用来模拟跨越多个frame的行为，可以由用户自定义
 <a href="http://docs.unity3d.com/Documentation/ScriptReference/Coroutine.html" target="_blank">Coroutine</a>  
 <a href="http://docs.unity3d.com/Documentation/ScriptReference/MonoBehaviour.Update.html" target="_blank">Update</a>  
 
-官网上有说明Coroutine的性能是优越的，但怀着怀疑的精神我还是做了以下的测试：  
+官网上有说明Coroutine的性能是优越的，但本着怀疑的精神我还是做了以下的测试：  
 场景中一共有5000个GameObject,然后分别挂上以下脚本。
 
 ### InvokeRepeating
