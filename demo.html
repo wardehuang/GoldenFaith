@@ -1,0 +1,160 @@
+---
+layout: page
+title: Demo
+header: Demo
+group: navigation
+---
+{% include JB/setup %}
+
+  <ul>
+	  <li><a href="#los">Legend of Sky</a> 3D MMORPG Demo.</li>
+	  <li><a href="#ngui-chat-room">NGUI Chat Room</a> 一个NGUI的练手作，支持20人在线的聊天室。</li>
+	  <li><a href="#survival-island">Survival Island</a> 第一个完整的3D demo，生存岛。</li>
+      <li><a href="#space-shooter">Space Shooter</a> 第一个练手小游戏。2D打飞机游戏~</li>
+  </ul>
+
+ <br>
+ <div class="row" id="los">
+	<div class="span9">
+        <section class="post">
+            <header>
+                <h1><span><a href="http://edwardwong.github.io/Asset/LosWeb.html" target="_blank" title="Legend of Sky" class="post_title">Legend of Sky</a></span></h1>
+            </header>
+            <div class="content">
+				<p>第一个3D MMORPG Demo, 最后还是太监了，原因很多。最重要的是从建模到动画，从客户端到服务端都一手包办，只凭借业余时间几乎是无法完成的。不过这也算是个很好的开始，至少算个3D MMORPG的原型。</p>
+				<p>客户端Unity3d, 建模与动画Maya, 服务端Photon + Unity3d + memcache + mysql, RPC协议用的protobuf。<br>
+还不算个成型的游戏，但也有几个点值得记录~</p>
+				<h2>模型和动画</h2>
+				<p>始终不是专业美工出身，模型虽然看得过去但未优化，动画调的也不协调(像抽筋=,=</p>
+				<h2>AssetBundleServer</h2>
+				<p>AB 服务器部署在Amazon AWS上，使用的IIS(因为Photon只能部署在Windows下，因此这里也使用IIS部署AB，懒得折腾其他WebServer). 实现了AssetBundleManager + PoolManager来管理动态加载与内存管理(u3d的内存管理还是有点坑的=,=)。 例如，动态获取服务器列表信息，换装时动态获取装备模型贴图，动态获取技能动画等。。。</p>
+				<h2>聊天</h2>
+				<p>其实就是将<a href="#ngui-chat-room">NGUI 聊天室</a>集成进来。 当然还有服务器逻辑~</p>
+				<h2>换装模块</h2>
+				<p>U3d的换装不难，但需要美工的协调，要制定u3d与模型配合规范。需要注意一下几点：要保证每个动画文件里的骨骼设置都是相同的，导出动画前，把这个文件里的mesh删除掉，减少文件大小。（但是美工要保存备份）；建立一个没有动画的相同骨骼的一个角色，准备绑定mesh，让它作为被驱动角色，被那些带有动画的FBX驱动，动态加载回来的装备，都往这个上面挂，那些带动画的FBX只是利用他的动画信息。</p>
+				<h2>第三人称摄像机</h2>
+				<p>系统自带的实在惨不忍睹，基本上每个人都会有自己的一套实现。 包括360度平滑旋转(不会头晕&gt;,&lt;), fps/3ps的切换， 对象淡入淡出，碰撞，缩放等。</p>
+				<h2>AI Server</h2>
+				<p>AI服务器是使用u3d写的，用-batchmode nographics 运行在服务器上。 u3d的物理引擎对写Ai提供了很大的帮助，可以很容易的实现，Ai感知玩家，寻找最近的玩家等逻辑。</p>
+				<h2>服务器</h2>
+				<p>服务器是基于Photon搭建的一个简单分布式服务器群，如下图所示：</p>
+				<img src="/assets/custom/images/posts/Los 00.jpg">
+				<p>图中表示的是一个服的集群。</p>
+					<p>最后：服务器是架设在Amazon AWS 的Tokyo Region上，延迟是难免的(谁让他免费一年=v=) 所以如果出现登录不了，或角色不出来的情况，请耐心等待5-10秒，还是出不来烦请刷新= 0 =..<br>
+				测试账号：<br>
+				test1<br>
+				test2<br>
+				test3<br>
+				test4<br>
+				test5</p>
+				<p>密码:123</p>
+			</div>
+		</section>
+	</div>
+	<div class="span3">
+	<img src="/assets/custom/images/posts/Los 01.jpg">
+	<img src="/assets/custom/images/posts/Los 03.jpg">
+	<img src="/assets/custom/images/posts/Los 02.jpg">
+	<img src="/assets/custom/images/posts/Los 04.jpg">
+	</div>
+</div>
+  <br>
+ 
+<div class="row" id="ngui-chat-room">
+    <div class="span9">
+        <section class="post">
+            <header>
+                <h1><span><a href="http://edwardwong.github.io/Asset/ChatRoom.html" target="_blank" title="NGUI Chat Room" class="post_title">NGUI Chat Room</a></span></h1>
+            </header>
+            <div class="content">
+				<p>NGUI是接触的最早的一个unity插件。看完了官方的视频后，就跟着官方的教程一个场景一个场景的过~ 当过到聊天框那个的时候，心里暗叫了一声（卧槽。。。） 在学NGUI之初，就已经定好一个目标用作检验自己的成果，想的是一个游戏的聊天框，因此在看到自带的聊天框那渣功能的时候不免吐一下槽~~~</p>
+
+				<p>预想中的聊天框是具有以下功能的：<br>
+				1. 表情<br>
+				2. 支持将背包中的道具输入到聊天框展示<br>
+				3. 将玩家输入到聊天框<br>
+				4. 将坐标输入到聊天框<br>
+				5. 点击道具/玩家/坐标的超链接能得到相应的回馈<br>
+				6. Ctrl-C/V (这个没实现出来= =) <a href="http://www.tasharen.com/forum/index.php?topic=27.0" target="_blank">作者也没办法啦&gt;,&lt;</a> <a href="https://www.assetstore.unity3d.com/#/content/10047" target="_blank">最近发现AssetStore上有高人解决了</a><br>
+				7. 多频道<br>
+				8. 滚屏/锁屏/清屏</p>
+
+				<p>可以看出都是些很基础的功能。</p>
+
+				<p>首先是<code>表情</code>。 NGUI2.05开始就支持表情，<a href="http://www.youtube.com/watch?v=JbqfK3mU140" target="_blank">猛击</a>。 看完视频后，作为一个敲惯代码的农民表示比较难以接受，基本都是手动的活。 我理想中的实现是，只要表情sprite的名字是有规律的，写代码循环生成就可以。 某个更新后，这个过程变得方便了点，直接在Inspector中就可以添加表情，但还没方便到可以满足我这种懒人。</p>
+
+				道具展示。 就是把道具贴到聊天框，其他玩家可以查看。<br>
+				玩家信息。 就是点击玩家名字，可以私聊啊啥啥的。<br>
+				坐标信息。 就是点击了能寻路~ 上面三个都是一个超链接的功能而已。<br>
+				多频道。 就是相应的消息只发到相应的频道只有相应的玩家能看到~<br>
+				<p>现在它是个聊天室，支持20个人在线， 服务器搭建在<a href="http://cloud.exitgames.com/" target="_blank">Photon Cloud</a>上。 动态字体支持后，马上就改了（恨透了bitmap字体，特别是中文）</p>
+				<p>注意：
+				等待"登录"按钮出现后，随意输入你的大名就可登录了~ 如果"登录"按钮没出现，请F5，有时服务器会抽风- =!!</p>
+				</div>
+
+        </section>
+    </div>
+    <div class="span3">
+		<img src="/assets/custom/images/posts/NGUIChatRoomScreenshot.jpg">
+		
+		<img src="/assets/custom/images/posts/JoinedLobby.jpg">
+    </div>
+</div>
+   <br>
+
+<div class="row" id="survival-island">
+	<div class="span9">
+        <section class="post">
+            <header>
+                <h1><span><a href="http://edwardwong.github.io/Asset/SurvivalIsland.html" target="_blank" title="Survival Island" class="post_title">Survival Island</a></span></h1>
+            </header>
+            <div class="content">
+				<p>这个demo是读《Unity 3.x Game Development Essentials》的时候做的。也是值得推荐的一本入门书，基本上涵盖了unity所有的基础知识点，从3D常识到unity软件界面; 从基本脚本到编写游戏控制逻辑; GUI，粒子系统 和 动画系统（都是老版）; 物理碰撞，重力，平抛; lightmap， occlusion culling基本优化，等等等等。。。</p>
+				<p>说回这个demo，“你在一个不知名的荒岛上醒来，你要做的就是寻找方法自救以及向外界求救，或是等待必将到来的————死亡。” XDDDD<br>
+				是目前完成的最完整的一个3D demo，可以说真正算是一个可玩的小游戏（不好玩=v=）。虽然往后做了mmorpg的demo， 研究了shader，写了各种绚丽的特效，但都不能算是是一个完整的游戏。而这个，是。。。</p>
+			</div>
+		</section>
+	</div>
+	<div class="span3">
+	<img src="/assets/custom/images/posts/Survival Island 01.jpg">
+	<img src="/assets/custom/images/posts/Survival Island 02.jpg">
+	<img src="/assets/custom/images/posts/Survival Island 03.jpg">
+	</div>
+</div>
+ <br>
+  
+<div class="row" id="space-shooter">
+    <div class="span9">
+        <section class="post">
+            <header>
+                <h1><span><a href="http://edwardwong.github.io/Asset/SpaceShooter.html" target="_blank" title="Space Shooter" class="post_title">Space Shooter</a></span></h1>
+            </header>
+            <div class="content">
+                <p>这个是第一个Unity练手小项目，跟着<a href="http://www.3dbuzz.com/training/view/unity-standard/simple-2d-shooter" target="_blank">视频教程</a>一步步完成的。虽然很简单，但确实把我带入门了，并且也是有值得记录下来的知识点。</p>
+				
+				<p>箭头左右移动，空格开火~ 击落超过10个陨石就胜利，被击落3次就失败，就这么简单。 麻雀虽小，五脏俱全。这个小小的教程里着实提到了很多知识点：<br>
+				1. 模型导入<br>
+				2. Unity3d的目录结构<br>
+				3. 自定义Visual Studio模板<br>
+				4. Input, 控制飞机的移动<br>
+				5. 创建子弹，如何应用物理组件<br>
+				6. 创建陨石，如何检测碰撞<br>
+				7. 创建粒子系统，模拟简单的爆炸效果（用的是老版的粒子系统）<br>
+				8. 添加声音<br>
+				9. GUI<br>
+				10. 使用 co-routines（这是个值得展开的知识点，在往后的开发中， 我使用co-routine甚多）<br>
+				11. 切换场景<br>
+				12. .....</p>
+				
+				<p>总的来说，虽然已经历史久远了，这的确是一套很好的入门教程。</p>
+				
+            </div>
+
+        </section>
+    </div>
+    <div class="span3">
+	<img src="/assets/custom/images/posts/SpaceShooter01.jpg" />  
+	
+	<img src="/assets/custom/images/posts/SpaceShooter02.jpg" />
+    </div>
+</div>
